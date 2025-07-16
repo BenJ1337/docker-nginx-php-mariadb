@@ -33,4 +33,3 @@ services:
       MARIADB_USER: redaxouser
       MARIADB_PASSWORD: redaxouser
       MARIADB_DATABASE: redaxo
-      
