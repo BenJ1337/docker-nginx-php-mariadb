@@ -23,6 +23,7 @@ services:
       target: php-fpm-dev
     volumes:
       - ./redaxo:/var/www/html 
+    #  - ./php-fpm/xDebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
     depends_on:
       - db
   db:
