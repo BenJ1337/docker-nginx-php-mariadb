@@ -23,12 +23,12 @@ services:
       target: php-fpm-dev
     volumes:
       - ./redaxo:/var/www/html 
-    #  - ./php-fpm/xDebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+      - ./php-fpm/xDebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
     depends_on:
       - db
   db:
     container_name: db
-    image: mariadb
+    image: mariadb:11
     environment:
       MARIADB_ROOT_PASSWORD: example
       MARIADB_USER: redaxouser
