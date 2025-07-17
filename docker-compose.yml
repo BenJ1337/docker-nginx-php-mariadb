@@ -11,7 +11,6 @@ services:
     volumes:
       - ./redaxo:/usr/share/nginx/html
       - ./nginx/etc/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/etc/fastcgi_params:/etc/nginx/fastcgi_params
       - ./nginx/etc/server.conf:/etc/nginx/server.conf
     depends_on:
       - php
