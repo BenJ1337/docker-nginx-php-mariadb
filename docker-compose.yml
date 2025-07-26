@@ -21,15 +21,40 @@ services:
       context: php-fpm
       target: php-fpm-dev
     volumes:
-      - ./redaxo:/var/www/html 
+      - ./redaxo:/var/www/html
       - ./php-fpm/xDebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
     depends_on:
       - db
   db:
     container_name: db
     image: mariadb:11
+    volumes:
+      - db_storage:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: example
       MARIADB_USER: redaxouser
       MARIADB_PASSWORD: redaxouser
       MARIADB_DATABASE: redaxo
+  adminer_container:
+    container_name: adminer
+    image: adminer:5.3.0-standalone
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DESIGN: win98
+    ports:
+      - 8080:8080
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:5.2
+    ports:
+      - 8181:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: db
+      PMA_USER: redaxouser
+      PMA_PASSWORD: redaxouser
+      TZ: Europe/Berlin
+      UPLOAD_LIMIT: 2G
+      MEMORY_LIMIT: 1G
+volumes:
+  db_storage:
