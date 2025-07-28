@@ -1,4 +1,4 @@
-FROM php:8-fpm AS base
+FROM php:8.3-fpm AS base
 
 RUN set -eux; \
     apt update && \
