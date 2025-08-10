@@ -38,3 +38,7 @@ COPY xDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 RUN sed -i '/cgi.fix_pathinfo=1/s/^;//g' /usr/local/etc/php/php.ini
+RUN sed -i 's/^memory_limit = 128M$/memory_limit = 2G/' /usr/local/etc/php/php.ini
+
+RUN docker-php-ext-configure pcntl --enable-pcntl \
+  && docker-php-ext-install pcntl
